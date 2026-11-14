@@ -1,0 +1,23 @@
+# Archivos de datos reales (no van al repo)
+impresoras.json
+historico.json
+meta.json
+_lock.json
+
+# Mocks: si querés que los que clonen tengan algo, dejalos versionados.
+# Si preferís que cada uno arme su propio JSON desde cero, descomentá estas líneas:
+# *.mock.json
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# Backups
+*.bak
+
+# Sistema operativo
+Thumbs.db
+Desktop.ini
+.DS_Store

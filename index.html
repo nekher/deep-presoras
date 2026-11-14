@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep presoras</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236366f1'/%3E%3Cstop offset='1' stop-color='%238b5cf6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='24' height='24' rx='5' fill='url(%23g)'/%3E%3Cellipse cx='12' cy='9' rx='5.5' ry='4.5' fill='%23fff'/%3E%3Ccircle cx='10' cy='9' r='1' fill='%231e2547'/%3E%3Ccircle cx='14' cy='9' r='1' fill='%231e2547'/%3E%3Cpath d='M6 12 Q5 15 6 18 Q7.5 18 7.5 15 Q7.5 13 8 12 Z' fill='%23fff'/%3E%3Cpath d='M10 12 Q9 16 10 19 Q11.5 19 11 16 Q11 14 11 12 Z' fill='%23fff'/%3E%3Cpath d='M12.5 12 Q12 17 12.5 20 Q14 17 13.5 12 Z' fill='%23fff'/%3E%3Cpath d='M15 12 Q16 16 15 19 Q13.5 19 14 16 Q14 14 14 12 Z' fill='%23fff'/%3E%3Cpath d='M18 12 Q19 15 18 18 Q16.5 18 16.5 15 Q16.5 13 16 12 Z' fill='%23fff'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-icon" id="brandIcon" role="button" tabindex="0" title="Deep presoras">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+            <ellipse cx="12" cy="9" rx="5.5" ry="4.5" fill="#fff"/>
+            <circle cx="10" cy="9" r="1" fill="#1e2547"/>
+            <circle cx="14" cy="9" r="1" fill="#1e2547"/>
+            <path d="M6 12 Q5 15 6 18 Q7.5 18 7.5 15 Q7.5 13 8 12 Z" fill="#fff"/>
+            <path d="M10 12 Q9 16 10 19 Q11.5 19 11 16 Q11 14 11 12 Z" fill="#fff"/>
+            <path d="M12.5 12 Q12 17 12.5 20 Q14 17 13.5 12 Z" fill="#fff"/>
+            <path d="M15 12 Q16 16 15 19 Q13.5 19 14 16 Q14 14 14 12 Z" fill="#fff"/>
+            <path d="M18 12 Q19 15 18 18 Q16.5 18 16.5 15 Q16.5 13 16 12 Z" fill="#fff"/>
+          </svg>
+        </div>
+        <div>
+          <div class="brand-title">Deep</div>
+          <div class="brand-subtitle">presoras</div>
+        </div>
+      </div>
+
+      <div class="role-badge-wrap">
+        <span class="role-badge" id="roleBadge">⏳ Cargando…</span>
+        <button class="btn btn-secondary btn-sm role-logout" id="btnLogout" hidden>Cerrar sesión</button>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="tablero">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+          <span>Tablero</span>
+        </button>
+        <button class="nav-item" data-view="impresoras">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+          <span>Lista de Impresoras</span>
+        </button>
+        <button class="nav-item" data-view="buscar">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0 .41-.41.41-1.08 0-1.49L15.5 14zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+          <span>Buscador</span>
+        </button>
+        <button class="nav-item" data-view="historico">
+          <svg viewBox="0 0 24 24" width="20" height="20"><path fill="currentColor" d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"/></svg>
+          <span>Históricos</span>
+        </button>
+      </nav>
+
+      <button class="btn btn-primary btn-scan" id="btnScan" hidden>
+        <span id="scanIcon">🔄</span>
+        <span id="scanText">Actualizar ahora</span>
+      </button>
+
+      <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+        <span class="theme-icon">☀️</span>
+        <span class="theme-label">Tema claro</span>
+      </button>
+
+      <a class="github-btn" href="https://github.com/nekher" target="_blank" rel="noopener noreferrer" title="GitHub — @nekher">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.7-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg>
+        <span class="github-label">@nekher</span>
+      </a>
+    </aside>
+
+    <main class="main">
+
+      <div class="role-banner" id="roleBanner" hidden></div>
+
+      <section id="view-tablero" class="view active">
+        <header class="view-header">
+          <div>
+            <h1>Tablero</h1>
+            <p class="subtitle" id="lastUpdate">Cargando…</p>
+          </div>
+          <button class="btn btn-secondary btn-share" id="btnShareDashboard" title="Descargar dashboard como HTML para compartir">
+            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>
+            <span>Compartir</span>
+          </button>
+        </header>
+
+        <div class="dash-section-title">Resumen</div>
+
+        <div class="stats-grid">
+          <div class="stat-card stat-historico">
+            <div class="stat-icon">📊</div>
+            <div class="stat-card-body">
+              <div class="stat-label">Hojas históricas</div>
+              <div class="stat-value" id="statTotalHojas">—</div>
+              <div class="stat-sub" id="statTotalHojasSub">confiables</div>
+            </div>
+          </div>
+          <div class="stat-card stat-mes">
+            <div class="stat-icon">📅</div>
+            <div class="stat-card-body">
+              <div class="stat-label">Hojas este mes</div>
+              <div class="stat-value" id="statHojasMes">—</div>
+              <div class="stat-sub" id="statHojasMesSub">—</div>
+            </div>
+          </div>
+          <div class="stat-card stat-printer">
+            <div class="stat-icon">🏆</div>
+            <div class="stat-card-body">
+              <div class="stat-label">Impresora top</div>
+              <div class="stat-value" id="statTopPrinterValue">—</div>
+              <div class="stat-sub" id="statTopPrinterName">—</div>
+            </div>
+          </div>
+          <div class="stat-card stat-mes-peor">
+            <div class="stat-icon">🔥</div>
+            <div class="stat-card-body">
+              <div class="stat-label">Peor mes</div>
+              <div class="stat-value" id="statWorstMonthValue">—</div>
+              <div class="stat-sub" id="statWorstMonthName">—</div>
+            </div>
+          </div>
+          <div class="stat-card stat-piso">
+            <div class="stat-icon">🏢</div>
+            <div class="stat-card-body">
+              <div class="stat-label">Piso más abusador</div>
+              <div class="stat-value" id="statTopFloorValue">—</div>
+              <div class="stat-sub" id="statTopFloorName">—</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2>Estado general</h2>
+            <div class="donut-wrap">
+              <svg class="donut" viewBox="0 0 100 100" id="donut"></svg>
+              <div class="donut-center">
+                <div class="donut-number" id="donutNumber">—</div>
+                <div class="donut-label">responden</div>
+              </div>
+            </div>
+            <div class="legend" id="donutLegend"></div>
+          </div>
+
+          <div class="card">
+            <h2 id="topMesTitle">TOP 5 MÁS UTILIZADAS DEL MES</h2>
+            <div id="topMes" class="top-list"></div>
+          </div>
+        </div>
+
+        <div class="dash-section-title">Tendencia</div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <h2>Tendencia mensual</h2>
+          <p class="card-hint" style="margin-top:-8px;">El mes en curso se muestra proyectado a fin de mes.</p>
+          <div id="graficoTendencia" class="bar-chart"></div>
+        </div>
+
+        <div class="dash-section-title">Distribución</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2>Impresoras por modelo</h2>
+            <div class="donut-wrap">
+              <svg class="donut" viewBox="0 0 100 100" id="donutModelos"></svg>
+            </div>
+            <div id="donutModelosPanel" class="donut-panel" hidden></div>
+            <div class="legend legend-modelos" id="donutModelosLegend"></div>
+          </div>
+
+          <div class="card">
+            <h2>Impresoras por edificio</h2>
+            <div id="graficoPorEdificio" class="bar-chart"></div>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2>Impresoras por piso</h2>
+            <div id="graficoPorPiso" class="bar-chart"></div>
+          </div>
+
+          <div class="card">
+            <h2>Impresoras por funcionario</h2>
+            <div id="graficoPorFuncionario" class="bar-chart"></div>
+          </div>
+        </div>
+
+        <div class="dash-section-title">Consumo</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h2 id="topHistoricoTitle">TOP 5 MÁS UTILIZADAS — HISTÓRICO</h2>
+            <div id="topHistorico" class="top-list"></div>
+          </div>
+
+          <div class="card">
+            <h2>Consumo por edificio</h2>
+            <div id="consumoPorEdificio" class="bar-chart"></div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:16px;">
+          <h2>Hojas por funcionario (últimos 3 meses)</h2>
+          <div id="graficoHojasPorFuncionario" class="bar-chart"></div>
+        </div>
+
+        <div class="dash-section-title">Estado operativo</div>
+
+        <details class="collapse-section" id="seccionOk">
+          <summary>
+            <span class="collapse-title">Impresoras OK</span>
+            <span class="collapse-count" id="countOk">—</span>
+          </summary>
+          <div class="collapse-content" id="listaOk"></div>
+        </details>
+
+        <details class="collapse-section collapse-problems" id="seccionProblemas">
+          <summary>
+            <span class="collapse-title">Impresoras con problemas</span>
+            <span class="collapse-count" id="countProblemas">—</span>
+          </summary>
+          <div class="collapse-content" id="listaProblemas"></div>
+        </details>
+      </section>
+
+
+      <section id="view-impresoras" class="view">
+        <header class="view-header">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <button class="btn-back" id="btnBackToEdificios" hidden>← Volver a edificios</button>
+            <h1 id="impresorasTitle">Lista de Impresoras</h1>
+          </div>
+          <button class="btn btn-primary" id="btnAddPrinter" hidden>+ Agregar impresora</button>
+        </header>
+
+        <div id="edificiosGrid" class="edificios-grid"></div>
+
+        <div id="edificiosExtras">
+          <div class="actions-bar">
+            <p class="hint">Los cambios se guardan automáticamente en <strong>impresoras.json</strong>.</p>
+            <div class="actions-buttons">
+              <div class="backup-wrap" id="pdfWrap">
+                <button class="btn btn-secondary btn-backup" id="btnExportPdf" type="button" title="Exportar a PDF">
+                  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                  <span>Exportar PDF</span>
+                </button>
+                <div class="backup-menu" id="pdfMenu" hidden>
+                  <button type="button" class="backup-menu-item" data-pdf="lista">
+                    <span class="backup-menu-item-title">Lista de impresoras</span>
+                    <span class="backup-menu-item-sub">Reporte de consumo con hojas del mes y total histórico</span>
+                  </button>
+                  <button type="button" class="backup-menu-item" data-pdf="dashboard">
+                    <span class="backup-menu-item-title">Dashboard completo</span>
+                    <span class="backup-menu-item-sub">Mismo contenido que "Compartir" del tablero</span>
+                  </button>
+                </div>
+              </div>
+              <div class="backup-wrap" id="backupWrap">
+                <button class="btn btn-secondary btn-backup" id="btnBackup" type="button" title="Realizar backup">
+                  <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                  <span>Realizar backup</span>
+                  <span class="backup-badge" id="backupBadge" hidden></span>
+                </button>
+                <div class="backup-menu" id="backupMenu" hidden>
+                  <button type="button" class="backup-menu-item" data-backup="total">
+                    <span class="backup-menu-item-title">Backup total</span>
+                    <span class="backup-menu-item-sub">Archivo con los datos de cada impresora + archivo con el histórico</span>
+                  </button>
+                  <button type="button" class="backup-menu-item" data-backup="impresoras">
+                    <span class="backup-menu-item-title">Solo lista de impresoras</span>
+                    <span class="backup-menu-item-sub">Archivo con los datos de cada impresora</span>
+                  </button>
+                  <button type="button" class="backup-menu-item" data-backup="historico">
+                    <span class="backup-menu-item-title">Solo histórico</span>
+                    <span class="backup-menu-item-sub">Archivo con el histórico mes a mes por impresora</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <details class="collapse-section collapse-deleted" id="seccionBorradas">
+            <summary>
+              <span class="collapse-title">Impresoras borradas</span>
+              <span class="collapse-count" id="countBorradas">—</span>
+            </summary>
+            <div class="collapse-content" id="listaBorradas"></div>
+          </details>
+        </div>
+
+        <div id="impresorasListWrap" hidden>
+          <div class="card">
+            <div class="table-wrap">
+              <table class="table" id="printersTable">
+                <thead></thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-buscar" class="view">
+        <header class="view-header"><h1>Buscador</h1></header>
+        <div class="card">
+          <div class="filters">
+            <div class="filter-group filter-group-wide">
+              <label for="searchText">Buscar</label>
+              <input type="text" id="searchText" placeholder="IP, serial, área, funcionario, modelo, piso…">
+            </div>
+            <div class="filter-group">
+              <label for="searchEdificio">Edificio</label>
+              <select id="searchEdificio"><option value="">Todos</option></select>
+            </div>
+            <div class="filter-group">
+              <label for="searchPiso">Piso</label>
+              <select id="searchPiso"><option value="">Todos</option></select>
+            </div>
+            <div class="filter-group">
+              <label for="searchEstado">Estado</label>
+              <select id="searchEstado">
+                <option value="">Todos</option>
+                <option value="ok">OK</option>
+                <option value="usb">USB</option>
+                <option value="error">Sin respuesta</option>
+                <option value="noscan">No escaneables</option>
+              </select>
+            </div>
+            <button class="btn btn-secondary" id="btnClearFilters">Limpiar</button>
+          </div>
+        </div>
+        <div id="searchEmpty" class="card search-empty">
+          <h2>¿Qué impresora estás buscando?</h2>
+          <p>Usá los filtros de arriba para encontrar impresoras por IP, serial, área, funcionario, modelo, piso o edificio. Después hacé click en una para ver su DNI completo con todos sus datos e histórico.</p>
+          <div class="hints">
+            <span class="hint-chip">IP · Serial</span>
+            <span class="hint-chip">Área · Funcionario</span>
+            <span class="hint-chip">Modelo</span>
+            <span class="hint-chip">Edificio · Piso</span>
+            <span class="hint-chip">Estado</span>
+          </div>
+        </div>
+        <div class="card" id="searchResultsCard" hidden>
+          <div class="search-results-header">
+            <span id="searchResultsCount">— impresoras</span>
+          </div>
+          <div class="table-wrap">
+            <table class="table" id="searchResults">
+              <thead>
+                <tr>
+                  <th>Modelo</th>
+                  <th>IP / Serial</th>
+                  <th>Área</th>
+                  <th>Piso</th>
+                  <th>Edificio</th>
+                  <th>Funcionario</th>
+                  <th>Estado</th>
+                  <th class="text-right">Total</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="view-detalle" class="view">
+        <header class="view-header">
+          <button class="btn-back" id="btnBackToSearch">← Volver al buscador</button>
+        </header>
+        <div id="detalleContent"></div>
+      </section>
+
+      <section id="view-historico" class="view">
+        <header class="view-header">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <h1>Históricos</h1>
+            <button class="legacy-toggle" id="legacyToggle" title="Ver información sobre datos legacy">
+              <svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
+            </button>
+          </div>
+          <p class="subtitle">Los meses con delta manual aparecen con una M azul al lado del número</p>
+        </header>
+
+        <div class="legacy-panel" id="legacyPanel" hidden>
+          <div class="legacy-panel-body">
+            <strong>⚠ Datos no confiables (legacy)</strong>
+            <p>Todo lo anterior a <b>noviembre 2026</b> proviene de un registro manual y puede tener inconsistencias. Se muestra con fondo rayado y contador crudo (no delta). <b>No se suma al total.</b></p>
+            <p><b>Punto de partida de la estadística confiable:</b></p>
+            <ul style="margin:6px 0 6px 20px;padding:0;">
+              <li><b>Octubre 2026</b>: baseline manual (último valor conocido del Excel).</li>
+              <li><b>Noviembre 2026</b>: primer mensualizado. Diferencia entre el scan de noviembre y el baseline de octubre. <em>Aproximado</em> — puede incluir días de octubre y no llega al final del mes.</li>
+              <li><b>Diciembre 2026</b>: primer dato <em>exacto</em>. Diferencia entre dos scans SNMP consecutivos. Desde acá, todo limpio.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table class="table table-hist" id="histTable">
+              <thead></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="modal-backdrop" id="modal" hidden>
+    <div class="modal">
+      <h2 id="modalTitle">Agregar impresora</h2>
+      <form id="printerForm">
+        <div class="field">
+          <label for="inputIp">IP o hostname *</label>
+          <input type="text" id="inputIp" required placeholder="192.168.1.100 o USB">
+        </div>
+        <div class="field">
+          <label for="inputSerial">Serial <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-dim);font-size:11px;">(recomendado)</span></label>
+          <input type="text" id="inputSerial" placeholder="Ej: 701793830G6RH">
+        </div>
+        <div class="field">
+          <label for="inputModelo">Modelo</label>
+          <input type="text" id="inputModelo" placeholder="Ej: MB2546">
+        </div>
+        <div class="field">
+          <label for="inputArea">Área *</label>
+          <input type="text" id="inputArea" required placeholder="Ej: COORDINACION DE PATRIMONIO">
+        </div>
+        <div class="field">
+          <label for="inputFuncionario">Funcionario</label>
+          <input type="text" id="inputFuncionario" placeholder="Ej: GUSTAVO JAVIER">
+        </div>
+        <div class="field">
+          <label for="inputPiso">Piso <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-dim);font-size:11px;">(subsuelo: -1 · PB: 0 · piso N: N)</span></label>
+          <input type="text" id="inputPiso" placeholder="PB, 13, 15, -1...">
+        </div>
+        <div class="field">
+          <label for="inputEdificio">Edificio <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-dim);font-size:11px;">(opcional, texto libre)</span></label>
+          <input type="text" id="inputEdificio" placeholder="Ej: Sede Central, Anexo, 9 de Julio…">
+        </div>
+        <div class="field" style="flex-direction:row;align-items:center;gap:10px;margin-bottom:16px;">
+          <input type="checkbox" id="inputEscanear" style="width:16px;height:16px;cursor:pointer;">
+          <label for="inputEscanear" style="text-transform:none;letter-spacing:0;font-weight:500;cursor:pointer;font-size:13px;color:var(--text-muted);">Escanear esta impresora vía SNMP</label>
+        </div>
+
+        <hr style="border:none;border-top:1px solid var(--border);margin:18px 0 14px;">
+        <div class="section-label">Contador inicial</div>
+
+        <div id="baselineLocked" hidden>
+          <div class="baseline-display">
+            <span id="baselineValue">—</span>
+            <button type="button" id="btnUnlockBaseline" class="lock-btn" title="Desbloquear para editar">🔒</button>
+          </div>
+          <p class="hint-small">Punto de partida del conteo. Bloqueado para evitar cambios accidentales.</p>
+        </div>
+
+        <div id="baselineEdit" hidden>
+          <p class="hint-small" id="baselineEditHint" style="margin-bottom:10px;"></p>
+          <div class="field">
+            <label for="inputBaselineMes">Mes de referencia</label>
+            <input type="month" id="inputBaselineMes">
+          </div>
+          <div class="field">
+            <label for="inputBaselineRaw">Valor del contador</label>
+            <input type="number" id="inputBaselineRaw" placeholder="Ej: 61418" min="0" step="1">
+          </div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid var(--border);margin:18px 0 14px;">
+        <div class="section-label">Lectura actual · <span id="lecturaMesLabel">—</span></div>
+
+        <div id="lecturaActualAuto" hidden>
+          <div class="field">
+            <input type="text" id="inputLecturaAuto" readonly>
+          </div>
+          <p class="hint-small">Se actualiza automáticamente vía SNMP. El dato del sensor tiene prioridad sobre cualquier valor manual.</p>
+        </div>
+
+        <div id="lecturaActualManual" hidden>
+          <div class="field">
+            <input type="number" id="inputLecturaManual" placeholder="—" min="0" step="1">
+          </div>
+          <p class="hint-small">Cargá acá el contador que muestra la impresora. Solo hace falta para USB o impresoras caídas.</p>
+        </div>
+
+        <button type="button" id="btnMostrarMesAnterior" class="link-small">+ Cargar también el mes anterior</button>
+
+        <div id="lecturaAnteriorSection" hidden>
+          <div class="field">
+            <label for="inputLecturaAnterior">Lectura · <span id="lecturaAnteriorLabel">—</span></label>
+            <input type="number" id="inputLecturaAnterior" placeholder="—" min="0" step="1">
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="btnCancel">Cerrar</button>
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="idleModal" hidden>
+    <div class="modal">
+      <h2>¿Seguís ahí?</h2>
+      <p style="margin-bottom:16px;color:var(--text-muted);">Detectamos inactividad. Si no confirmás en <strong><span id="idleCountdown">60</span> segundos</strong>, se libera la edición para que otra persona pueda usarla.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="btnIdleLogout">Cerrar sesión ahora</button>
+        <button type="button" class="btn btn-primary" id="btnIdleConfirm">Sí, sigo acá</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
